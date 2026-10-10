@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord - Anmelden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #5865f2 0%, #4752c4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            gap: 0;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left-section {
+            flex: 1;
+            color: white;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 600px;
+        }
+
+        .logo {
+            font-size: 42px;
+            margin-bottom: 50px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo svg {
+            width: 48px;
+            height: 48px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .left-section h1 {
+            font-size: 56px;
+            margin-bottom: 24px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .left-section p {
+            font-size: 17px;
+            opacity: 0.95;
+            line-height: 1.5;
+            max-width: 500px;
+        }
+
+        .right-section {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .login-box {
+            background: #36393f;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .login-box h2 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .login-box > p {
+            color: #b5bac1;
+            font-size: 14px;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            color: #dbdee1;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 14px;
+            background: #2c2f33;
+            border: 1px solid #202225;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.15s ease;
+            font-family: inherit;
+        }
+
+        input[type="email"]::placeholder,
+        input[type="password"]::placeholder {
+            color: #72767d;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #5865f2;
+            background: #232529;
+            box-shadow: 0 0 0 2px rgba(88, 101, 242, 0.15);
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 24px;
+        }
+
+        .forgot-password a {
+            color: #00b0f4;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.15s;
+        }
+
+        .forgot-password a:hover {
+            color: #0099cc;
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 10px;
+            background: #5865f2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .login-btn:hover {
+            background: #4752c4;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .signup-section {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #404249;
+        }
+
+        .signup-section p {
+            color: #b5bac1;
+            font-size: 14px;
+        }
+
+        .signup-section a {
+            color: #00b0f4;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.15s;
+        }
+
+        .signup-section a:hover {
+            color: #0099cc;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px 16px;
+            background: transparent;
+            color: #b5bac1;
+            border: 1px solid #404249;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.15s;
+        }
+
+        .tab-btn.active {
+            background: #5865f2;
+            color: white;
+            border-color: #5865f2;
+        }
+
+        .tab-btn:hover:not(.active) {
+            border-color: #5865f2;
+            color: #dbdee1;
+        }
+
+        .qr-code {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 250px;
+        }
+
+        @media (max-width: 1200px) {
+            .left-section {
+                padding: 40px 60px;
+            }
+
+            .right-section {
+                padding: 40px;
+            }
+
+            .left-section h1 {
+                font-size: 48px;
+            }
+
+            .login-box {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 40px 20px;
+                overflow-y: auto;
+            }
+
+            .left-section {
+                padding: 20px 0;
+                text-align: center;
+                max-width: 100%;
+            }
+
+            .right-section {
+                padding: 20px 0;
+                background: transparent;
+                height: auto;
+            }
+
+            .login-box {
+                max-width: 100%;
+            }
+
+            .left-section h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <div class="logo">
+                <svg viewBox="0 0 30 30" fill="white">
+                    <path d="M25.476 3c1.596 3.25 2.345 6.863 2.345 10.877C27.82 21.476 23.17 27 15.9 27 12.62 27 9.7 25.88 7.5 24.14l1.74-1.2c1.855 1.4 4.19 2.24 6.66 2.24 5.96 0 10.485-4.52 10.485-10.3 0-3.35-.845-6.54-2.39-9.38l1.48-1.5z" fill="white"/>
+                    <path d="M7.22 12.46c0-2.32 1.915-4.22 4.28-4.22 2.365 0 4.28 1.9 4.28 4.22 0 2.32-1.915 4.2-4.28 4.2-2.365 0-4.28-1.88-4.28-4.2z" fill="white"/>
+                </svg>
+                Discord
+            </div>
+            <h1>Willkommen zurück!</h1>
+            <p>Wir freuen uns, dich zu sehen. Discord ist der Ort, um mit deiner Gemeinschaft zu chatten.</p>
+        </div>
+
+        <div class="right-section">
+            <div class="login-box">
+                <div id="login-tab">
+                    <h2>Willkommen zurück!</h2>
+                    <p>Freuen Sie sich auf viele tolle Momente mit ihren Freunden</p>
+
+                    <form onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label for="email">E-MAIL ODER TELEFONNUMMER</label>
+                            <input type="email" id="email" placeholder="E-Mail oder Telefonnummer eingeben" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">PASSWORT</label>
+                            <input type="password" id="password" placeholder="Passwort eingeben" required>
+                        </div>
+
+                        <div class="forgot-password">
+                            <a href="#">Passwort vergessen?</a>
+                        </div>
+
+                        <button type="submit" class="login-btn">Anmelden</button>
+                    </form>
+                </div>
+
+                <div class="signup-section">
+                    <p>Du bist neu? <a onclick="handleSignup()">Erstelle einen Account</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (email && password) {
+                console.log('Login für:', email);
+                alert('Anmeldung erfolgreich! (Demo-Modus)');
+                // Hier würde die echte API-Anfrage stattfinden
+            }
+        }
+
+        function handleSignup() {
+            alert('Zur Registrierungsseite (Demo-Modus)');
+        }
+
+        // Smooth focus-Effekte
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.background = '#232529';
+                });
+                input.addEventListener('blur', function() {
+                    this.style.background = '#2c2f33';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
